@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hasith Sir | O/L 2026 Batch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0f1a;
+      --surface: #131929;
+      --surface2: #1a2236;
+      --border: #1f2e4a;
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --text: #e8edf5;
+      --muted: #6b7fa3;
+      --exam-date: new Date('2026-12-08T08:30:00');
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── SEARCH SCREEN ── */
+    #search-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .brand span { color: var(--accent2); }
+
+    .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    /* countdown */
+    .countdown-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .cd-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .cd-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .cd-unit {
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 0.8rem 0.5rem;
+    }
+
+    .cd-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--accent2);
+      line-height: 1;
+    }
+
+    .cd-unit-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .cd-event {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .cd-event strong { color: var(--yellow); }
+
+    /* search box */
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .search-box label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .search-box input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box input::placeholder { color: var(--muted); }
+
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.85rem 1.4rem;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: #2563eb; }
+    .btn:active { transform: scale(0.97); }
+
+    .error-msg {
+      margin-top: 0.8rem;
+      color: var(--red);
+      font-size: 0.85rem;
+      text-align: center;
+      min-height: 1.2rem;
+    }
+
+    /* ── STUDENT SCREEN ── */
+    #student-screen {
+      display: none;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .back-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    .student-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .student-id-badge {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+
+    .student-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .pct-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .pct-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .pct-num.good { color: var(--green); }
+    .pct-num.warn { color: var(--yellow); }
+    .pct-num.bad  { color: var(--red); }
+
+    .pct-meta { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    .pct-bar-bg {
+      margin-top: 1rem;
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .pct-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.8s ease;
+    }
+
+    .pct-bar-fill.good { background: var(--green); }
+    .pct-bar-fill.warn { background: var(--yellow); }
+    .pct-bar-fill.bad  { background: var(--red); }
+
+    /* countdown in student view */
+    .cd-mini {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cd-mini-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .cd-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .cd-mini-unit {
+      background: var(--surface2);
+      border-radius: 8px;
+      padding: 0.6rem 0.3rem;
+      text-align: center;
+    }
+
+    .cd-mini-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--accent2);
+      line-height: 1;
+    }
+
+    .cd-mini-lbl {
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* attendance history */
+    .section-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hist-cell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.4rem;
+      text-align: center;
+    }
+
+    .hist-cell.present { border-color: #166534; background: #052e16; }
+    .hist-cell.absent  { border-color: #7f1d1d; background: #2d0707; }
+
+    .hist-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .hist-status { font-size: 0.85rem; font-weight: 600; }
+    .hist-cell.present .hist-status { color: var(--green); }
+    .hist-cell.absent  .hist-status { color: var(--red); }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 400px) {
+      .cd-grid { gap: 0.4rem; }
+      .cd-num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SEARCH SCREEN ── -->
+<div id="search-screen">
+  <p class="brand">Hasith <span>Sir</span></p>
+  <p class="sub">O/L 2026 Batch · Attendance Portal</p>
+
+  <div class="countdown-wrap">
+    <p class="cd-label">O/L Exam Countdown</p>
+    <div class="cd-grid">
+      <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-unit-label">Days</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-unit-label">Hours</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-mins">--</div><div class="cd-unit-label">Mins</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cd-secs">--</div><div class="cd-unit-label">Secs</div></div>
+    </div>
+    <p class="cd-event">O/L Exam — <strong>Dec 8, 2026 · 8:30 AM</strong></p>
+  </div>
+
+  <div class="search-box">
+    <label>ඔබගේ Index Number ඇතුළු කරන්න</label>
+    <div class="input-row">
+      <input type="number" id="index-input" placeholder="eg: 26534001" />
+      <button class="btn" onclick="lookupStudent()">බලන්න</button>
+    </div>
+    <p class="error-msg" id="err-msg"></p>
+  </div>
+</div>
+
+<!-- ── STUDENT SCREEN ── -->
+<div id="student-screen">
+  <button class="back-btn" onclick="goBack()">← ආපසු</button>
+
+  <div class="student-header">
+    <div class="student-id-badge" id="s-id"></div>
+    <div class="student-name" id="s-name"></div>
+    <div class="pct-row">
+      <div class="pct-num" id="s-pct"></div>
+      <div class="pct-meta" id="s-meta"></div>
+    </div>
+    <div class="pct-bar-bg"><div class="pct-bar-fill" id="s-bar"></div></div>
+  </div>
+
+  <div class="cd-mini">
+    <p class="cd-mini-label">O/L Exam Countdown</p>
+    <div class="cd-mini-grid">
+      <div class="cd-mini-unit"><div class="cd-mini-num" id="s-days">--</div><div class="cd-mini-lbl">Days</div></div>
+      <div class="cd-mini-unit"><div class="cd-mini-num" id="s-hours">--</div><div class="cd-mini-lbl">Hours</div></div>
+      <div class="cd-mini-unit"><div class="cd-mini-num" id="s-mins">--</div><div class="cd-mini-lbl">Mins</div></div>
+      <div class="cd-mini-unit"><div class="cd-mini-num" id="s-secs">--</div><div class="cd-mini-lbl">Secs</div></div>
+    </div>
+  </div>
+
+  <p class="section-title">Attendance History</p>
+  <div class="history-grid" id="history-grid"></div>
+
+  <p class="footer-note">Hasith Sir | O/L 2026 Batch</p>
+</div>
+
+<script>
+  // ── DATA (Apps Script replace karanawa) ──────────────────
+  // data.js file eken load wenawa (see below)
+  // ─────────────────────────────────────────────────────────
+
+  const EXAM_DATE = new Date('2026-12-08T08:30:00');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateCountdown(ids) {
+    const now = new Date();
+    const diff = EXAM_DATE - now;
+    if (diff <= 0) {
+      ids.forEach(([d,h,m,s]) => {
+        document.getElementById(d).textContent = '00';
+        document.getElementById(h).textContent = '00';
+        document.getElementById(m).textContent = '00';
+        document.getElementById(s).textContent = '00';
+      });
+      return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
+
+    ids.forEach(([d,h,m,s]) => {
+      document.getElementById(d).textContent = pad(days);
+      document.getElementById(h).textContent = pad(hours);
+      document.getElementById(m).textContent = pad(mins);
+      document.getElementById(s).textContent = pad(secs);
+    });
+  }
+
+  setInterval(() => {
+    updateCountdown([
+      ['cd-days','cd-hours','cd-mins','cd-secs'],
+      ['s-days','s-hours','s-mins','s-secs']
+    ]);
+  }, 1000);
+  updateCountdown([
+    ['cd-days','cd-hours','cd-mins','cd-secs'],
+    ['s-days','s-hours','s-mins','s-secs']
+  ]);
+
+  // ── URL param check (link eken aawa nam auto load) ────────
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      document.getElementById('index-input').value = id;
+      lookupStudent();
+    }
+  });
+
+  function lookupStudent() {
+    const raw = document.getElementById('index-input').value.trim();
+    const err = document.getElementById('err-msg');
+    err.textContent = '';
+
+    if (!raw) { err.textContent = 'Index number ඇතුළු කරන්න.'; return; }
+
+    const student = (window.ATTENDANCE_DATA || []).find(s => String(s.id) === raw);
+    if (!student) {
+      err.textContent = 'Index number හමු නොවීය. නැවත පරීක්ෂා කරන්න.';
+      return;
+    }
+
+    showStudent(student);
+  }
+
+  function showStudent(s) {
+    document.getElementById('s-id').textContent = 'Index: ' + s.id;
+    document.getElementById('s-name').textContent = s.name;
+
+    const total = s.records.length;
+    const present = s.records.filter(r => r.status === 'P').length;
+    const pct = total > 0 ? Math.round((present / total) * 100) : 0;
+
+    const cls = pct >= 80 ? 'good' : pct >= 60 ? 'warn' : 'bad';
+
+    const pctEl = document.getElementById('s-pct');
+    pctEl.textContent = pct + '%';
+    pctEl.className = 'pct-num ' + cls;
+
+    document.getElementById('s-meta').innerHTML =
+      `පැමිණි දින: <strong>${present}</strong><br>` +
+      `මුළු දින: <strong>${total}</strong>`;
+
+    const bar = document.getElementById('s-bar');
+    bar.style.width = pct + '%';
+    bar.className = 'pct-bar-fill ' + cls;
+
+    // history
+    const grid = document.getElementById('history-grid');
+    grid.innerHTML = '';
+    s.records.forEach(r => {
+      const isP = r.status === 'P';
+      grid.innerHTML += `
+        <div class="hist-cell ${isP ? 'present' : 'absent'}">
+          <div class="hist-date">${r.date}</div>
+          <div class="hist-status">${isP ? '✓ Present' : '✗ Absent'}</div>
+        </div>`;
+    });
+
+    document.getElementById('search-screen').style.display = 'none';
+    document.getElementById('student-screen').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function goBack() {
+    document.getElementById('student-screen').style.display = 'none';
+    document.getElementById('search-screen').style.display = 'flex';
+    history.pushState({}, '', window.location.pathname);
+  }
+
+  // Enter key support
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('search-screen').style.display !== 'none') {
+      lookupStudent();
+    }
+  });
+</script>
+
+<!-- data.js — Apps Script generate karanawa -->
+<script src="data.js"></script>
+</body>
+</html>
