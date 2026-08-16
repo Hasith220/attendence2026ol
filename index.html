@@ -9,18 +9,28 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0b0f1a;
-      --surface: #131929;
-      --surface2: #1a2236;
-      --border: #1f2e4a;
-      --accent: #3b82f6;
-      --accent2: #60a5fa;
-      --green: #22c55e;
-      --red: #ef4444;
-      --yellow: #f59e0b;
-      --text: #e8edf5;
-      --muted: #6b7fa3;
-      --exam-date: new Date('2026-12-08T08:30:00');
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --surface2: #f8fafc;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent2: #1d4ed8;
+      --green: #16a34a;
+      --green-bg: #f0fdf4;
+      --green-border: #bbf7d0;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --red-border: #fecaca;
+      --yellow: #d97706;
+      --yellow-bg: #fffbeb;
+      --yellow-border: #fde68a;
+      --orange: #ea580c;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --text: #0f172a;
+      --muted: #64748b;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
     }
 
     body {
@@ -37,24 +47,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1.5rem 1rem;
     }
 
     .brand {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 6vw, 3rem);
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       text-align: center;
     }
 
-    .brand span { color: var(--accent2); }
+    .brand span { color: var(--accent); }
 
     .sub {
       color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 3rem;
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
       text-align: center;
     }
 
@@ -63,73 +73,80 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 3rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
       text-align: center;
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
+      box-shadow: var(--shadow);
     }
 
     .cd-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--muted);
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     .cd-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
     .cd-unit {
-      background: var(--surface2);
+      background: #eff6ff;
       border-radius: 10px;
-      padding: 0.8rem 0.5rem;
+      padding: 0.7rem 0.4rem;
+      border: 1px solid #dbeafe;
     }
 
     .cd-num {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      color: var(--accent2);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--accent);
       line-height: 1;
     }
 
     .cd-unit-label {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: var(--muted);
-      margin-top: 0.3rem;
+      margin-top: 0.25rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
 
     .cd-event {
-      margin-top: 0.9rem;
-      font-size: 0.82rem;
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
       color: var(--muted);
     }
 
-    .cd-event strong { color: var(--yellow); }
+    .cd-event strong { color: var(--orange); }
 
     /* search box */
     .search-box {
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
     }
 
     .search-box label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hint-text {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
     }
 
     .input-row {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     .search-box input {
@@ -137,38 +154,44 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.85rem 1rem;
+      padding: 0.8rem 1rem;
       color: var(--text);
       font-size: 1rem;
       font-family: 'Inter', sans-serif;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow);
     }
 
-    .search-box input:focus { border-color: var(--accent); }
-    .search-box input::placeholder { color: var(--muted); }
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .search-box input::placeholder { color: #94a3b8; }
 
     .btn {
       background: var(--accent);
       color: #fff;
       border: none;
       border-radius: 10px;
-      padding: 0.85rem 1.4rem;
-      font-size: 0.95rem;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.9rem;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
       white-space: nowrap;
+      box-shadow: var(--shadow);
     }
 
-    .btn:hover { background: #2563eb; }
+    .btn:hover { background: var(--accent2); }
     .btn:active { transform: scale(0.97); }
 
     .error-msg {
-      margin-top: 0.8rem;
+      margin-top: 0.7rem;
       color: var(--red);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-align: center;
       min-height: 1.2rem;
     }
@@ -176,22 +199,23 @@
     /* ── STUDENT SCREEN ── */
     #student-screen {
       display: none;
-      max-width: 600px;
+      max-width: 580px;
       margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
+      padding: 1.25rem 1rem 3rem;
     }
 
     .back-btn {
-      background: none;
+      background: var(--surface);
       border: 1px solid var(--border);
       color: var(--muted);
       border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-size: 0.82rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
       cursor: pointer;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
       font-family: 'Inter', sans-serif;
       transition: color 0.2s, border-color 0.2s;
+      box-shadow: var(--shadow);
     }
 
     .back-btn:hover { color: var(--text); border-color: var(--accent); }
@@ -200,122 +224,146 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-md);
     }
 
     .student-id-badge {
       display: inline-block;
-      background: var(--surface2);
-      border: 1px solid var(--border);
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
       border-radius: 6px;
-      padding: 0.25rem 0.6rem;
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
     }
 
     .student-name {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin-bottom: 1rem;
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      margin-bottom: 0.9rem;
+      color: var(--text);
     }
 
     .pct-row {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
+      margin-bottom: 0.5rem;
     }
 
+    .pct-left { display: flex; flex-direction: column; }
+
     .pct-num {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       font-weight: 700;
       line-height: 1;
     }
 
-    .pct-num.good { color: var(--green); }
-    .pct-num.warn { color: var(--yellow); }
-    .pct-num.bad  { color: var(--red); }
+    .pct-num.good   { color: var(--green); }
+    .pct-num.warn   { color: var(--yellow); }
+    .pct-num.alert  { color: var(--orange); }
+    .pct-num.bad    { color: var(--red); }
 
-    .pct-meta { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .pct-caption {
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-top: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 99px;
+      display: inline-block;
+    }
+
+    .pct-caption.good  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .pct-caption.warn  { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+    .pct-caption.alert { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+    .pct-caption.bad   { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+
+    .pct-meta { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
 
     .pct-bar-bg {
-      margin-top: 1rem;
-      height: 6px;
-      background: var(--surface2);
+      margin-top: 0.9rem;
+      height: 7px;
+      background: #f1f5f9;
       border-radius: 99px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
 
     .pct-bar-fill {
       height: 100%;
       border-radius: 99px;
-      transition: width 0.8s ease;
+      transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
     }
 
-    .pct-bar-fill.good { background: var(--green); }
-    .pct-bar-fill.warn { background: var(--yellow); }
-    .pct-bar-fill.bad  { background: var(--red); }
+    .pct-bar-fill.good  { background: var(--green); }
+    .pct-bar-fill.warn  { background: var(--yellow); }
+    .pct-bar-fill.alert { background: var(--orange); }
+    .pct-bar-fill.bad   { background: var(--red); }
 
-    /* countdown in student view */
+    /* countdown mini */
     .cd-mini {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 1.5rem;
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
     }
 
     .cd-mini-label {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--muted);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
     }
 
     .cd-mini-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .cd-mini-unit {
-      background: var(--surface2);
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
       border-radius: 8px;
-      padding: 0.6rem 0.3rem;
+      padding: 0.5rem 0.3rem;
       text-align: center;
     }
 
     .cd-mini-num {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
-      color: var(--accent2);
+      font-size: 1.3rem;
+      color: var(--accent);
       line-height: 1;
     }
 
     .cd-mini-lbl {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: var(--muted);
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
 
-    /* attendance history */
+    /* history */
     .section-title {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--muted);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
 
     .history-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 0.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 0.4rem;
       margin-bottom: 1.5rem;
     }
 
@@ -323,28 +371,27 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.6rem 0.4rem;
+      padding: 0.5rem 0.3rem;
       text-align: center;
     }
 
-    .hist-cell.present { border-color: #166534; background: #052e16; }
-    .hist-cell.absent  { border-color: #7f1d1d; background: #2d0707; }
+    .hist-cell.present { border-color: var(--green-border); background: var(--green-bg); }
+    .hist-cell.absent  { border-color: var(--red-border);   background: var(--red-bg); }
 
-    .hist-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.3rem; }
-    .hist-status { font-size: 0.85rem; font-weight: 600; }
+    .hist-date { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .hist-status { font-size: 0.78rem; font-weight: 600; }
     .hist-cell.present .hist-status { color: var(--green); }
     .hist-cell.absent  .hist-status { color: var(--red); }
 
     .footer-note {
       text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2rem;
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 1.5rem;
     }
 
-    @media (max-width: 400px) {
-      .cd-grid { gap: 0.4rem; }
-      .cd-num { font-size: 1.5rem; }
+    @media (max-width: 380px) {
+      .history-grid { grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); }
     }
   </style>
 </head>
@@ -368,8 +415,9 @@
 
   <div class="search-box">
     <label>ඔබගේ Index Number ඇතුළු කරන්න</label>
+    <p class="hint-text">අවසාන ඉලක්කම් 2 ගැසීමෙන් ද සෙවිය හැක (උදා: 60)</p>
     <div class="input-row">
-      <input type="number" id="index-input" placeholder="eg: 26534001" />
+      <input type="number" id="index-input" placeholder="26534060 හෝ 60" />
       <button class="btn" onclick="lookupStudent()">බලන්න</button>
     </div>
     <p class="error-msg" id="err-msg"></p>
@@ -384,7 +432,10 @@
     <div class="student-id-badge" id="s-id"></div>
     <div class="student-name" id="s-name"></div>
     <div class="pct-row">
-      <div class="pct-num" id="s-pct"></div>
+      <div class="pct-left">
+        <div class="pct-num" id="s-pct"></div>
+        <div class="pct-caption" id="s-caption"></div>
+      </div>
       <div class="pct-meta" id="s-meta"></div>
     </div>
     <div class="pct-bar-bg"><div class="pct-bar-fill" id="s-bar"></div></div>
@@ -403,112 +454,128 @@
   <p class="section-title">Attendance History</p>
   <div class="history-grid" id="history-grid"></div>
 
-  <p class="footer-note">Hasith Sir | O/L 2026 Batch</p>
+  <p class="footer-note">Hasith Sir · O/L 2026 Batch</p>
 </div>
 
 <script>
-  // ── DATA (Apps Script replace karanawa) ──────────────────
-  // data.js file eken load wenawa (see below)
-  // ─────────────────────────────────────────────────────────
-
   const EXAM_DATE = new Date('2026-12-08T08:30:00');
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
-  function updateCountdown(ids) {
-    const now = new Date();
+  function tickCountdown() {
+    const now  = new Date();
     const diff = EXAM_DATE - now;
+    const sets = [
+      ['cd-days','cd-hours','cd-mins','cd-secs'],
+      ['s-days','s-hours','s-mins','s-secs']
+    ];
     if (diff <= 0) {
-      ids.forEach(([d,h,m,s]) => {
-        document.getElementById(d).textContent = '00';
-        document.getElementById(h).textContent = '00';
-        document.getElementById(m).textContent = '00';
-        document.getElementById(s).textContent = '00';
-      });
+      sets.forEach(ids => ids.forEach(id => { const el = document.getElementById(id); if(el) el.textContent = '00'; }));
       return;
     }
     const days  = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins  = Math.floor((diff % 3600000) / 60000);
     const secs  = Math.floor((diff % 60000) / 1000);
-
-    ids.forEach(([d,h,m,s]) => {
-      document.getElementById(d).textContent = pad(days);
-      document.getElementById(h).textContent = pad(hours);
-      document.getElementById(m).textContent = pad(mins);
-      document.getElementById(s).textContent = pad(secs);
+    sets.forEach(([d,h,m,s]) => {
+      const de=document.getElementById(d), he=document.getElementById(h),
+            me=document.getElementById(m), se=document.getElementById(s);
+      if(de) de.textContent=pad(days);
+      if(he) he.textContent=pad(hours);
+      if(me) me.textContent=pad(mins);
+      if(se) se.textContent=pad(secs);
     });
   }
+  setInterval(tickCountdown, 1000);
+  tickCountdown();
 
-  setInterval(() => {
-    updateCountdown([
-      ['cd-days','cd-hours','cd-mins','cd-secs'],
-      ['s-days','s-hours','s-mins','s-secs']
-    ]);
-  }, 1000);
-  updateCountdown([
-    ['cd-days','cd-hours','cd-mins','cd-secs'],
-    ['s-days','s-hours','s-mins','s-secs']
-  ]);
-
-  // ── URL param check (link eken aawa nam auto load) ────────
+  // Auto-load from URL param
   window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    if (id) {
-      document.getElementById('index-input').value = id;
-      lookupStudent();
-    }
+    if (id) { document.getElementById('index-input').value = id; lookupStudent(); }
   });
 
   function lookupStudent() {
-    const raw = document.getElementById('index-input').value.trim();
+    const raw = String(document.getElementById('index-input').value).trim();
     const err = document.getElementById('err-msg');
     err.textContent = '';
 
     if (!raw) { err.textContent = 'Index number ඇතුළු කරන්න.'; return; }
 
-    const student = (window.ATTENDANCE_DATA || []).find(s => String(s.id) === raw);
-    if (!student) {
-      err.textContent = 'Index number හමු නොවීය. නැවත පරීක්ෂා කරන්න.';
-      return;
+    const data = window.ATTENDANCE_DATA || [];
+    let student = null;
+
+    // Full match first
+    student = data.find(s => String(s.id) === raw);
+
+    // Last-2-digits match
+    if (!student && raw.length <= 2) {
+      const suffix = raw.padStart(2, '0');
+      const matches = data.filter(s => String(s.id).slice(-2) === suffix);
+      if (matches.length === 1) {
+        student = matches[0];
+      } else if (matches.length > 1) {
+        err.textContent = 'Students ' + matches.length + ' දෙනෙකු හමු විය. Full number ඇතුළු කරන්න.';
+        return;
+      }
     }
 
+    if (!student) { err.textContent = 'Index number හමු නොවීය. නැවත පරීක්ෂා කරන්න.'; return; }
     showStudent(student);
+  }
+
+  function getClass(pct) {
+    if (pct >= 80) return 'good';
+    if (pct >= 60) return 'warn';
+    if (pct >= 40) return 'alert';
+    return 'bad';
+  }
+
+  function getCaption(pct) {
+    if (pct >= 80) return '🌟 Excellent! Keep it up!';
+    if (pct >= 60) return '👍 Good, but can do better!';
+    if (pct >= 40) return '⚠️ Attendance needs improvement!';
+    return '🚨 Critical! Please attend regularly!';
   }
 
   function showStudent(s) {
     document.getElementById('s-id').textContent = 'Index: ' + s.id;
     document.getElementById('s-name').textContent = s.name;
 
-    const total = s.records.length;
-    const present = s.records.filter(r => r.status === 'P').length;
-    const pct = total > 0 ? Math.round((present / total) * 100) : 0;
-
-    const cls = pct >= 80 ? 'good' : pct >= 60 ? 'warn' : 'bad';
+    // Filter valid records (skip NaN dates)
+    const validRecords = s.records.filter(r => r.date && r.date !== 'NaN/NaN' && !r.date.includes('NaN'));
+    const total   = validRecords.length;
+    const present = validRecords.filter(r => r.status === 'P').length;
+    const pct     = total > 0 ? Math.round((present / total) * 100) : 0;
+    const cls     = getClass(pct);
 
     const pctEl = document.getElementById('s-pct');
     pctEl.textContent = pct + '%';
-    pctEl.className = 'pct-num ' + cls;
+    pctEl.className   = 'pct-num ' + cls;
+
+    const capEl = document.getElementById('s-caption');
+    capEl.textContent = getCaption(pct);
+    capEl.className   = 'pct-caption ' + cls;
 
     document.getElementById('s-meta').innerHTML =
-      `පැමිණි දින: <strong>${present}</strong><br>` +
-      `මුළු දින: <strong>${total}</strong>`;
+      'පැමිණි දින: <strong>' + present + '</strong><br>' +
+      'මුළු දින: <strong>' + total + '</strong>';
 
     const bar = document.getElementById('s-bar');
-    bar.style.width = pct + '%';
-    bar.className = 'pct-bar-fill ' + cls;
+    bar.className   = 'pct-bar-fill ' + cls;
+    setTimeout(() => { bar.style.width = pct + '%'; }, 50);
 
-    // history
+    // History
     const grid = document.getElementById('history-grid');
     grid.innerHTML = '';
-    s.records.forEach(r => {
+    validRecords.forEach(r => {
       const isP = r.status === 'P';
-      grid.innerHTML += `
-        <div class="hist-cell ${isP ? 'present' : 'absent'}">
-          <div class="hist-date">${r.date}</div>
-          <div class="hist-status">${isP ? '✓ Present' : '✗ Absent'}</div>
-        </div>`;
+      const cell = document.createElement('div');
+      cell.className = 'hist-cell ' + (isP ? 'present' : 'absent');
+      cell.innerHTML = '<div class="hist-date">' + r.date + '</div>' +
+                       '<div class="hist-status">' + (isP ? '✓ Present' : '✗ Absent') + '</div>';
+      grid.appendChild(cell);
     });
 
     document.getElementById('search-screen').style.display = 'none';
@@ -518,11 +585,10 @@
 
   function goBack() {
     document.getElementById('student-screen').style.display = 'none';
-    document.getElementById('search-screen').style.display = 'flex';
+    document.getElementById('search-screen').style.display  = 'flex';
     history.pushState({}, '', window.location.pathname);
   }
 
-  // Enter key support
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' && document.getElementById('search-screen').style.display !== 'none') {
       lookupStudent();
@@ -530,7 +596,6 @@
   });
 </script>
 
-<!-- data.js — Apps Script generate karanawa -->
 <script src="data.js"></script>
 </body>
 </html>
