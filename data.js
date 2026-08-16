@@ -4030,52 +4030,9 @@ window.ATTENDANCE_DATA = [
   },
   {
     "id": "26534062",
-    "name": "K. Devindu Kaveen Nimsara",
+    "name": "T.V Sanduni Maheshika",
     "records": [
-      {
-        "date": "5/3",
-        "status": "A"
-      },
-      {
-        "date": "5/10",
-        "status": "A"
-      },
-      {
-        "date": "5/17",
-        "status": "A"
-      },
-      {
-        "date": "5/24",
-        "status": "A"
-      },
-      {
-        "date": "5/28",
-        "status": "A"
-      },
-      {
-        "date": "6/7",
-        "status": "A"
-      },
-      {
-        "date": "6/21",
-        "status": "A"
-      },
-      {
-        "date": "6/28",
-        "status": "A"
-      },
-      {
-        "date": "7/5",
-        "status": "A"
-      },
-      {
-        "date": "7/12",
-        "status": "A"
-      },
-      {
-        "date": "7/26",
-        "status": "A"
-      },
+     
       {
         "date": "8/2",
         "status": "P"
